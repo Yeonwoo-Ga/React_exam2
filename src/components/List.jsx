@@ -1,26 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import Todos from "../redux/modules/todos";
-import { toggleStatusTodo } from "../redux/modules/todos";
-import { TOGGLE_ISDONE } from "../redux/modules/todos";
-import { DELETE } from "../redux/modules/todos";
+import { GETBYID, toggleStatusTodo } from "../redux/modules/todos";
 import { deleteTodo } from "../redux/modules/todos";
+import { getTodoById } from "../redux/modules/todos";
 
 
 const List = () => {
-
     const {todos} = useSelector((state)=>state.Todos)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const param = useParams()
+
+    const handleNavigate = (todo)=>{
+        dispatch(getTodoById(todo.id))
+        navigate(`/${todo.id}`);
+    }
+
+
     return(
     <>
     <StListBox>
         <StListBox2>
-            <h2>할일..!!!</h2>
+            <h2>할일..!!!🔥🔥</h2>
         <StContentBox>
         {todos.map(todo => (
-           todo.isDone == false ? <StTodoBox key={todo.id}>
+           todo.isDone == false && todo.title !='' && todo.content !=''? <StTodoBox key={todo.id}>
                 <div>
+                    <Sta onClick={()=>handleNavigate(todo)}>상세보기</Sta>
                     <h2>{todo.title}</h2>
                     <span>{todo.content}</span>
                 </div>
@@ -38,11 +46,12 @@ const List = () => {
     </StListBox>
     <StListBox>
         <StListBox2>
-            <h2>다했다..!!!</h2>
+            <h2>다했다..!!!⚡⚡</h2>
         <StContentBox>
             {todos.map(todo => (
                todo.isDone == true ? <StTodoBox key={todo.id}>
                     <div>
+                        <Sta onClick={()=>handleNavigate(todo)}>상세보기</Sta>
                         <h2>{todo.title}</h2>
                         <span>{todo.content}</span>
                     </div>
@@ -72,16 +81,17 @@ const StListBox = styled.div`
 
 const StTodoBox = styled.div`
     width:300px;
-    height: 200px;
+    height: 250px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    border : 5px solid purple;
+    border : 5px solid white;
     border-radius: 30px;
     padding:0px 30px;
     gap:30px;
     text-align: center;
     justify-content: center;
+   
 `;
 
 const StListBox2 = styled.div`
@@ -89,6 +99,8 @@ const StListBox2 = styled.div`
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+
+
 
 `;
 
@@ -111,7 +123,7 @@ const StDelBtn = styled.button`
     border-radius: 10px;
     padding:10px;
     width:120px;
-    border : 3px solid greenyellow;
+    border : 3px solid gray;
 `;
 
 const StDoneBtn = styled.button`
@@ -119,7 +131,7 @@ const StDoneBtn = styled.button`
     border-radius: 10px;
     padding:10px;
     width:120px;
-    border : 3px solid red;
+    border : 3px solid gray;
 
 `;
 
@@ -128,8 +140,20 @@ const StCancleBtn = styled.button`
     border-radius: 10px;
     padding:10px;
     width:120px;
-    border : 3px solid red;
+    border : 3px solid gray;
 
+`;
+
+const Sta = styled.div`
+    margin-top:;
+    width:100px;
+    line-height: 25px;
+    height: 25px;
+    border : 3px solid white;
+    border-radius: 15px;
+  &:hover {
+    cursor: pointer;
+  }  
 `;
 
 

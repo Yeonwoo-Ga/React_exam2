@@ -19,8 +19,11 @@ const StHeaderDiv = styled.div`
     border : 1px solid gainsboro;
     justify-content: space-between;
     border-radius: 20px;
+    background-color: #dcf1fe;
 
-    & span {margin: 0px 15px;}
+    & span {margin: 0px 15px;
+        background-color: #dcf1fe;
+    }
 `;
 
 export default Header

@@ -4,8 +4,7 @@ import styled from "styled-components"
 import Todos from "../redux/modules/todos";
 import {addTodo} from '../redux/modules/todos'
 import { CREATE_TODO } from "../redux/modules/todos";
-import { toggleStatusTodo } from "../redux/modules/todos";
-import { TOGGLE_ISDONE } from "../redux/modules/todos";
+
 
 
 
@@ -27,9 +26,11 @@ const Form = () => {
     const changeContentHandler = (e) =>{
         setContent(e.target.value)
     }
+
+    
     return(
             <StContainer>
-                <StInputBox>
+            <StInputBox>
                 <StSpan>제목</StSpan>
                 <StInput type="text" value={title} onChange={changeHandler}/>
                 <StSpan>내용</StSpan>
@@ -75,7 +76,7 @@ const StButton = styled.button`
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-    background-color: plum;
+    background-color: skyblue;
 
     & button:hover{
         cursor: pointer;
@@ -84,6 +85,8 @@ const StButton = styled.button`
 
 const StSpan = styled.span`
     font-weight : bold;
+    background-color: ghostwhite;
+    border-radius: 20px;
 `;
 
 const StInputBox = styled.div`
@@ -94,6 +97,13 @@ const StInputBox = styled.div`
     vertical-align: middle;
     display: flex;
     gap: 30px;
-    margin : 0 20px;`;
+    margin : 0 20px;
+    background-color: ghostwhite;
+
+    & span {
+        background-color: white;
+    }
+    `;
+    
 
 export default Form;

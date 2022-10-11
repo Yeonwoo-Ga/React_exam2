@@ -1,0 +1,1 @@
+import fontss.ttf from './fontss'

@@ -22,4 +22,4 @@ const StTodoBox = styled.div`
     gap:50px;
 `;
 
-export default todobox
+export default todoBox;

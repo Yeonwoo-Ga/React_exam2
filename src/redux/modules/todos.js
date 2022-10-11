@@ -4,12 +4,14 @@ const initialState = {
      id : new Date(),
      content : '공부하자!',
      isDone : false
-    }]
+    }],
+    currentTodo: {}
 }
 
 export const TOGGLE_ISDONE = 'TOGGLE_ISDONE'
 export const CREATE_TODO = 'CREATE_TODO'
 export const DELETE = 'DELETE'
+export const GETBYID = 'GETBYID'
 
 
 export const addTodo = (payload) => {
@@ -27,6 +29,11 @@ export const deleteTodo = (id)=>{
     payload : {id : id}}
 }
 
+export const getTodoById = (id) => {
+    return {type : GETBYID,
+    payload : {id}}
+}
+
 
 
 
@@ -39,7 +46,6 @@ const Todos = (state = initialState,action) => {
             todos:[...state.todos, action.payload]
         }
     case TOGGLE_ISDONE:
-        console.log(action.payload)
         return{
             ...state,
             todos: state.todos.map((todo) =>
@@ -54,7 +60,17 @@ const Todos = (state = initialState,action) => {
             todo.id !== action.payload.id
             )
         }
-        
+    case GETBYID:
+        const arr = state.todos.filter((todo)=>{
+            return todo.id === action.payload.id
+        })
+        const selectedCard = arr[0]
+
+        return{
+            ...state,
+            currentTodo : selectedCard
+        }
+            
         default:
             return state;
    }
