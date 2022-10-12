@@ -15,19 +15,18 @@ const Detail = () => {
     const currentTodo = useSelector((state)=> state.Todos.currentTodo)
 
     console.log(currentTodo)
-
     
         return(
                     <StDetail>
                         <StDetailBox>
-                            <StIdBox>hello World</StIdBox>
+                            <StIdBox>ID : {String(currentTodo.id)}</StIdBox>
                             <StBtn onClick={()=>navigate(-1)}>이전으로</StBtn>
                         </StDetailBox>
                         <StTitleBox>
                           제목 :  {currentTodo.title}
                         </StTitleBox>
                         <StContentBox>
-                            내용 : {currentTodo.content}
+                          내용 : {currentTodo.content}
                         </StContentBox>
                     </StDetail>
             )

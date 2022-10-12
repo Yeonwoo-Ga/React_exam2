@@ -12,10 +12,12 @@ const List = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const param = useParams()
+    console.log(param)
 
     const handleNavigate = (todo)=>{
         dispatch(getTodoById(todo.id))
         navigate(`/${todo.id}`);
+
     }
 
 
@@ -114,7 +116,7 @@ const StContentBox = styled.div`
 const StButtonBox = styled.div`
     display: flex;
     justify-content: space-evenly;
-
+    
 
 `;
 
@@ -145,7 +147,6 @@ const StCancleBtn = styled.button`
 `;
 
 const Sta = styled.div`
-    margin-top:;
     width:100px;
     line-height: 25px;
     height: 25px;

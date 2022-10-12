@@ -65,7 +65,7 @@ const Todos = (state = initialState,action) => {
             return todo.id === action.payload.id
         })
         const selectedCard = arr[0]
-
+       
         return{
             ...state,
             currentTodo : selectedCard
